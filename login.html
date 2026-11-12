@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | E-LIBRARY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261112">
+</head>
+<body class="auth-body" data-page="login">
+  <div class="auth-shell">
+    <div class="auth-panel auth-visual">
+      <p class="eyebrow">Faculty of Science and Technology</p>
+      <h1>Discover a world between pages.</h1>
+      <p>Library access for students, lecturers, and administrators.</p>
+    </div>
+    <div class="auth-panel auth-form-panel">
+      <a href="index.html" class="brand auth-brand"><span class="brand-mark">E</span><span>E-LIBRARY</span></a>
+      <h2>Welcome back</h2>
+      <div class="setup-note" data-config-message hidden></div>
+      <form id="login-form" class="auth-form">
+        <label>Email address<input id="login-email" type="email" placeholder="you@example.com" required></label>
+        <label>Password<input id="login-password" type="password" placeholder="Enter your password" required></label>
+        <button type="submit" class="btn btn-primary full-width">Login</button>
+      </form>
+      <p class="auth-link">Need an account? <a href="register.html">Register here</a></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/data-config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/data-layer.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

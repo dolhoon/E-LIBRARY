@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | E-LIBRARY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="admin">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">E</span><span>E-LIBRARY</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="admin.html">Dashboard</a>
+        <button class="btn btn-primary" data-logout>Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section admin-page">
+    <div class="container" id="admin-content">
+      <div class="member-hero">
+        <div>
+          <p class="eyebrow">Administrator</p>
+          <h1>Library administration</h1>
+        </div>
+      </div>
+
+      <div class="stats-grid" id="admin-stats"></div>
+
+      <div class="admin-grid">
+        <div class="panel-block">
+          <h2>Add new book</h2>
+          <form id="add-book-form" class="stack-form">
+            <input id="book-title" type="text" placeholder="Book title" required>
+            <input id="book-author" type="text" placeholder="Author" required>
+            <input id="book-category" type="text" placeholder="Category">
+            <input id="book-cover" type="url" placeholder="Cover image URL">
+            <input id="book-stock" type="number" min="0" value="1">
+            <select id="book-status"><option value="available">Available</option><option value="borrowed">Borrowed</option><option value="unavailable">Unavailable</option></select>
+            <textarea id="book-description" placeholder="Book description"></textarea>
+            <button type="submit" class="btn btn-primary">Save book</button>
+          </form>
+        </div>
+        <div class="panel-block">
+          <h2>Registered users</h2>
+          <div class="table-wrap small-table"></div>
+        </div>
+      </div>
+
+      <div class="panel-block">
+        <h2>Book management</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Stock</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="admin-books-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel-block">
+        <h2>Borrowing and return management</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>User</th><th>Book</th><th>Borrow date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="admin-borrowing-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid"><div><a href="index.html" class="brand"><span class="brand-mark">E</span><span>E-LIBRARY</span></a><p>Faculty of Science and Technology</p></div></div>
+  </footer>
+
+  <div class="setup-note" data-config-message hidden></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/data-config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/data-layer.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

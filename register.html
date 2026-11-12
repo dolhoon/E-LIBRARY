@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | E-LIBRARY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261112">
+</head>
+<body class="auth-body" data-page="register">
+  <div class="auth-shell">
+    <div class="auth-panel auth-visual">
+      <p class="eyebrow">Create account</p>
+      <h1>Join the E-LIBRARY community.</h1>
+      <p>Access your academic resources and borrowing request workflow.</p>
+    </div>
+    <div class="auth-panel auth-form-panel">
+      <a href="index.html" class="brand auth-brand"><span class="brand-mark">E</span><span>E-LIBRARY</span></a>
+      <h2>Register</h2>
+      <div class="setup-note" data-config-message hidden></div>
+      <form id="register-form" class="auth-form">
+        <label>Full name<input id="register-name" type="text" placeholder="Your full name" required></label>
+        <label>Email address<input id="register-email" type="email" placeholder="you@example.com" required></label>
+        <label>Institutional ID<input id="register-institutional-id" type="text" placeholder="Student or lecturer ID"></label>
+        <label>Role<select id="register-user-type"><option value="student">Student</option><option value="lecturer">Lecturer</option></select></label>
+        <label>Password<input id="register-password" type="password" placeholder="Create a password" required></label>
+        <button type="submit" class="btn btn-primary full-width">Create account</button>
+      </form>
+      <p class="auth-link">Already registered? <a href="login.html">Login here</a></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/data-config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/data-layer.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-LIBRARY | Faculty of Science and Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261112">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">E</span><span>E-LIBRARY</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="member.html" data-auth-state hidden>Member Area</a>
+        <a href="admin.html" data-auth-state hidden>Dashboard</a>
+        <a href="login.html" data-anon-state>Login</a>
+        <a href="register.html" data-anon-state class="btn btn-primary">Register</a>
+        <button class="btn btn-primary" data-auth-state hidden data-logout>Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Faculty of Science and Technology</p>
+          <h1>Where Knowledge Finds Its Home.</h1>
+          <p class="lead">Explore a thoughtfully curated collection of books, academic references, and literary discoveries.</p>
+          <div class="hero-actions">
+            <a href="catalog.html" class="btn btn-primary">Browse catalog</a>
+            <a href="login.html" class="btn btn-secondary">Member access</a>
+          </div>
+          <form class="hero-search" action="catalog.html" method="get">
+            <input type="text" name="search" placeholder="Search books or authors" aria-label="Search books">
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+          <div class="hero-meta">
+            <div><strong>6.5k+</strong><span>Catalog titles</span></div>
+            <div><strong>1.2k+</strong><span>Active readers</span></div>
+            <div><strong>24/7</strong><span>Digital access</span></div>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="book-stack">
+            <img src="assets/images/library-hero.jpg" alt="Elegant private library reading room">
+            <div class="floating-card floating-card-one"><span>Featured</span><strong>Algorithmic Thinking</strong></div>
+            <div class="floating-card floating-card-two"><span>Availability</span><strong>24 titles ready</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section editorial-intro">
+      <div class="container editorial-grid">
+        <div class="editorial-panel">
+          <p class="eyebrow">The library today</p>
+          <h2>An intellectual reading room for research, curiosity, and study.</h2>
+          <p>From foundational theory to contemporary scholarship, E-LIBRARY brings together thoughtfully selected resources for students, researchers, and faculty who value depth, focus, and discovery.</p>
+        </div>
+        <div class="split-stat">
+          <div class="stat-box"><strong>18</strong><span>Academic collections</span></div>
+          <div class="stat-box"><strong>4.9/5</strong><span>Reader satisfaction</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Featured picks</p>
+            <h2>Selected for Curious Minds.</h2>
+          </div>
+          <a href="catalog.html" class="text-link">Browse all books</a>
+        </div>
+        <div class="product-grid" id="featured-books"></div>
+      </div>
+    </section>
+
+    <section class="section muted-section">
+      <div class="container">
+        <div class="section-head narrow">
+          <div>
+            <p class="eyebrow">Browse by category</p>
+            <h2>Collected in distinct fields of inquiry</h2>
+          </div>
+        </div>
+        <div class="category-grid">
+          <div class="category-card">
+            <span class="category-label">Technology</span>
+            <div>
+              <h3>Systems</h3>
+              <p>Design, engineering, and digital thinking.</p>
+            </div>
+          </div>
+          <div class="category-card">
+            <span class="category-label">Research</span>
+            <div>
+              <h3>Scholarship</h3>
+              <p>Analytical work and critical inquiry.</p>
+            </div>
+          </div>
+          <div class="category-card">
+            <span class="category-label">Science</span>
+            <div>
+              <h3>Knowledge</h3>
+              <p>Foundational methods and practical study.</p>
+            </div>
+          </div>
+          <div class="category-card">
+            <span class="category-label">Literature</span>
+            <div>
+              <h3>Ideas</h3>
+              <p>Reading lists shaped for wider thought.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Recently added</p>
+            <h2>Fresh finds for the current term.</h2>
+          </div>
+          <a href="catalog.html" class="text-link">View full collection</a>
+        </div>
+        <div class="product-grid" id="recent-books"></div>
+      </div>
+    </section>
+
+    <section class="section muted-section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Reading & research</p>
+          <h2>Designed for study, reference, and quiet discovery.</h2>
+          <p>Our collections support coursework, independent reading, and deeper research with a catalog layout built for clarity and ease.</p>
+        </div>
+        <div class="mini-grid">
+          <div class="mini-collection"><span class="mini-label">Reading</span><h3>Weekly lists</h3><p>Curated collections for deeper study.</p></div>
+          <div class="mini-collection"><span class="mini-label">Access</span><h3>Borrowing</h3><p>Simple requests and transparent status.</p></div>
+          <div class="mini-collection"><span class="mini-label">Support</span><h3>Research</h3><p>Resources selected for academic growth.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="brand"><span class="brand-mark">E</span><span>E-LIBRARY</span></a>
+        <p>Faculty of Science and Technology<br>UIN Syarif Hidayatullah Jakarta</p>
+      </div>
+      <div>
+        <h4>Library services</h4>
+        <ul><li>Book borrowing</li><li>Reference access</li><li>Academic support</li></ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li>fst.library@uinjkt.ac.id</li><li>(021) 749-... </li><li>Campus library room</li></ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="setup-note" data-config-message hidden></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/data-config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/data-layer.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>

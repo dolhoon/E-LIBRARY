@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog | E-LIBRARY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261112">
+</head>
+<body data-page="catalog">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">E</span><span>E-LIBRARY</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="member.html" data-auth-state hidden>Member Area</a>
+        <a href="admin.html" data-auth-state hidden>Dashboard</a>
+        <a href="login.html" data-anon-state>Login</a>
+        <a href="register.html" data-anon-state class="btn btn-primary">Register</a>
+        <button class="btn btn-primary" data-auth-state hidden data-logout>Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="catalog-page">
+    <section class="page-hero small-hero">
+      <div class="container">
+        <p class="eyebrow">Collection</p>
+        <h1>Book catalog</h1>
+        <p class="lead">Curated volumes for study, research, and deliberate reading.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="catalog-toolbar">
+          <form id="catalog-filters" class="catalog-filters">
+            <div class="search-box"><input id="catalog-search" type="text" name="search" placeholder="Search by title or author"></div>
+            <div class="filter-group"><select id="category-filter" name="category"><option value="">All categories</option></select></div>
+            <div class="filter-group"><select id="status-filter" name="status"><option value="">All availability</option><option value="available">Available</option><option value="borrowed">Borrowed</option><option value="unavailable">Unavailable</option></select></div>
+            <div class="filter-group"><select id="sort-filter" name="sort"><option value="title">Title</option><option value="author">Author</option><option value="newest">Newest</option><option value="stock">Stock</option></select></div>
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </form>
+        </div>
+
+        <div class="product-grid catalog-grid" id="catalog-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a href="index.html" class="brand"><span class="brand-mark">E</span><span>E-LIBRARY</span></a><p>Faculty of Science and Technology</p></div>
+      <div><h4>Quick links</h4><ul><li><a href="index.html">Home</a></li><li><a href="catalog.html">Catalog</a></li><li><a href="member.html">Member area</a></li></ul></div>
+    </div>
+  </footer>
+
+  <div class="setup-note" data-config-message hidden></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/data-config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/data-layer.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>
