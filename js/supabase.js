@@ -12,7 +12,7 @@
   if (!url || url === 'SUPABASE_URL' || !anonKey || anonKey === 'SUPABASE_ANON_KEY') {
     window.supabaseReady = false;
     window.supabaseClient = null;
-    window.showSetupNotice('Supabase is not configured yet. Add your project URL and anon key in js/supabase-config.js.');
+    window.pendingServiceNotice = true;
     return;
   }
 
@@ -20,7 +20,7 @@
   if (!supabase || typeof supabase.createClient !== 'function') {
     window.supabaseReady = false;
     window.supabaseClient = null;
-    window.showSetupNotice('The Supabase JavaScript client did not load. Check the CDN script in your HTML files.');
+    window.pendingServiceNotice = true;
     return;
   }
 

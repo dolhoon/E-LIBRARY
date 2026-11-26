@@ -18,9 +18,10 @@
         <a href="index.html">Home</a>
         <a href="catalog.html">Catalog</a>
         <a href="member.html" data-auth-state hidden>Member Area</a>
-        <a href="admin.html" data-auth-state hidden>Dashboard</a>
+        <a href="admin.html" data-admin-state hidden>Dashboard</a>
         <a href="login.html" data-anon-state>Login</a>
         <a href="register.html" data-anon-state class="btn btn-primary">Register</a>
+        <span class="nav-user" data-user-name hidden></span>
         <button class="btn btn-primary" data-auth-state hidden data-logout>Logout</button>
       </nav>
     </div>
@@ -55,11 +56,9 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div><a href="index.html" class="brand"><span class="brand-mark">E</span><span>E-LIBRARY</span></a><p>Faculty of Science and Technology</p></div>
-      <div><h4>Quick links</h4><ul><li><a href="index.html">Home</a></li><li><a href="catalog.html">Catalog</a></li><li><a href="member.html">Member area</a></li></ul></div>
+      <div><h4>Quick links</h4><ul><li><a href="index.html">Home</a></li><li><a href="catalog.html">Catalog</a></li><li><a href="member.html" data-auth-state hidden>Member area</a></li></ul></div>
     </div>
   </footer>
-
-  <div class="setup-note" data-config-message hidden></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-config.js"></script>

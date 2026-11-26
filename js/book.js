@@ -10,10 +10,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     return;
   }
 
-  if (window.DATA_MODE === 'demo') {
-    window.showDemoNotice('Demo mode is active: this book preview uses sample catalog data. Borrowing and authentication require Supabase when the project is connected.');
-  }
-
   const { data, error } = await window.libraryData.getBookById(id);
 
   if (error || !data) {
@@ -23,13 +19,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   const book = data;
   const session = window.supabaseClient ? await window.supabaseClient.auth.getSession() : null;
-  const user = session?.data?.session?.user || null;
+  const user = window.DATA_MODE === 'demo' ? window.demoAuth?.currentUser() : (session?.data?.session?.user || null);
 
   const statusText = (book.availability_status || 'available').replace(/_/g, ' ');
   const isBorrowDisabled = Number(book.stock) <= 0 || statusText.toLowerCase() === 'unavailable';
 
-  const borrowMarkup = window.DATA_MODE === 'demo'
-    ? '<div class="detail-message"><p><strong>Demo mode:</strong> Borrowing is a preview only. Real requests are activated when Supabase is connected.</p><button id="demo-borrow-button" class="btn btn-primary">Preview borrow request</button></div>'
+  const borrowMarkup = !user
+    ? '<div class="detail-message"><p>Log in to borrow this book.</p><a href="login.html" class="btn btn-primary">Login to borrow</a></div>'
+    : window.DATA_MODE === 'demo'
+      ? (isBorrowDisabled ? '<button class="btn btn-muted" disabled>Unavailable</button>' : '<div class="detail-message"><p>Borrow period: 14 days.</p><button id="demo-borrow-button" class="btn btn-primary">Borrow this book</button></div>')
     : !user
     ? '<div class="detail-message"><p>Please log in to submit a borrowing request.</p><a href="login.html" class="btn btn-primary">Login to borrow</a></div>'
     : isBorrowDisabled
@@ -49,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           <span class="badge ${statusText === 'available' ? 'badge-success' : statusText === 'borrowed' ? 'badge-warning' : 'badge-muted'}">${statusText}</span>
           <span class="stock-label">${Number(book.stock) > 0 ? 'Copies available: ' + book.stock : 'Currently unavailable'}</span>
         </div>
-        <p class="detail-description">${book.description || 'No description is available yet for this title.'}</p>
+        ${book.description ? `<p class="detail-description">${book.description}</p>` : ''}
         <div class="info-card">
           <div><span>Stock</span><strong>${book.stock}</strong></div>
           <div><span>Status</span><strong>${statusText}</strong></div>
@@ -63,7 +61,17 @@ document.addEventListener('DOMContentLoaded', async function () {
   const borrowButton = document.querySelector('#demo-borrow-button');
   if (borrowButton) {
     borrowButton.addEventListener('click', function () {
-      window.showToast('Demo mode is active. Borrowing requests are preview-only until a live Supabase connection is configured.', 'error');
+      const member = window.demoAuth.currentUser();
+      if (!member) { window.location.href = 'login.html'; return; }
+      const records = window.demoAuth.getBorrowings();
+      const alreadyActive = records.some(item => item.email === member.email && String(item.book_id) === String(book.book_id) && ['pending','approved','borrowed'].includes(item.status));
+      if (alreadyActive) { window.showToast('You already have this book on loan.', 'error'); return; }
+      const borrowed = new Date(), due = new Date();
+      due.setDate(due.getDate() + 14);
+      records.unshift({ id: 'borrow-' + Date.now(), email: member.email, book_id: String(book.book_id), borrow_date: borrowed.toISOString(), due_date: due.toISOString(), return_date: null, status: 'borrowed' });
+      window.demoAuth.saveBorrowings(records);
+      window.showToast('Book borrowed. Your due date is ' + due.toLocaleDateString() + '.', 'success');
+      setTimeout(() => window.location.href = 'member.html', 900);
     });
   }
 

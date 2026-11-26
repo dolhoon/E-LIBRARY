@@ -65,7 +65,7 @@
     if (!window.supabaseClient) {
       return {
         data: [],
-        error: { message: 'Supabase is not configured yet. Add your project URL and anon key to enable live catalog data.' }
+        error: { message: 'Catalog unavailable.' }
       };
     }
 
@@ -106,7 +106,7 @@
     if (!window.supabaseClient) {
       return {
         data: null,
-        error: { message: 'Supabase is not configured yet. Add your project URL and anon key to enable live book details.' }
+        error: { message: 'Book details unavailable.' }
       };
     }
 
@@ -129,7 +129,7 @@
           return String(book.book_id) === String(id);
         });
 
-        return { data: found || null, error: found ? null : { message: 'Demo book not found.' } };
+        return { data: found || null, error: found ? null : { message: 'Book not found.' } };
       }
 
       return fetchBookByIdFromSupabase(id);

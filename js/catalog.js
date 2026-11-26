@@ -2,11 +2,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const catalogGrid = document.querySelector('#catalog-grid');
   const pageRoot = document.body.dataset.page;
 
-  if (!catalogGrid) return;
-
-  if (window.DATA_MODE === 'demo') {
-    window.showDemoNotice('Demo mode is active: local sample books are being displayed for presentation purposes only.');
-  }
+  if (!catalogGrid && pageRoot !== 'home') return;
 
   const params = new URLSearchParams(window.location.search);
   const search = (params.get('search') || '').trim();
@@ -27,12 +23,29 @@ document.addEventListener('DOMContentLoaded', async function () {
   const { data: books, error } = await window.libraryData.getBooks({ search, category, status, sort });
 
   if (error) {
-    catalogGrid.innerHTML = '<div class="empty-state"><h3>Catalog unavailable</h3><p>' + error.message + '</p></div>';
+    const message = '<div class="empty-state"><h3>Catalog unavailable</h3><p>Please try again later.</p></div>';
+    if (catalogGrid) {
+      catalogGrid.innerHTML = message;
+    } else {
+      ['#featured-books', '#recent-books'].forEach(selector => {
+        const grid = document.querySelector(selector);
+        if (grid) grid.innerHTML = message;
+      });
+    }
     return;
   }
 
   if (!books || books.length === 0) {
-    catalogGrid.innerHTML = '<div class="empty-state"><h3>No books match your filters.</h3><p>Try another author, category, or availability status.</p></div>';
+    if (catalogGrid) {
+      catalogGrid.innerHTML = '<div class="empty-state"><h3>No books match your filters.</h3><p>Try another author, category, or availability status.</p></div>';
+    }
+    if (pageRoot === 'home') {
+      const message = '<div class="empty-state"><h3>No books are currently available.</h3></div>';
+      ['#featured-books', '#recent-books'].forEach(selector => {
+        const grid = document.querySelector(selector);
+        if (grid) grid.innerHTML = message;
+      });
+    }
     return;
   }
 
@@ -68,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     `;
   }).join('');
 
-  catalogGrid.innerHTML = cards;
+  if (catalogGrid) catalogGrid.innerHTML = cards;
 
   if (pageRoot === 'home') {
     const featured = books.slice(0, 4);

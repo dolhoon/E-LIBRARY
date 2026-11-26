@@ -17,8 +17,11 @@
       <nav class="nav-menu">
         <a href="index.html">Home</a>
         <a href="catalog.html">Catalog</a>
-        <a href="admin.html">Dashboard</a>
-        <button class="btn btn-primary" data-logout>Logout</button>
+        <a href="admin.html" data-admin-state hidden>Dashboard</a>
+        <a href="login.html" data-anon-state>Login</a>
+        <a href="register.html" data-anon-state class="btn btn-primary">Register</a>
+        <span class="nav-user" data-user-name hidden></span>
+        <button class="btn btn-primary" data-auth-state hidden data-logout>Logout</button>
       </nav>
     </div>
   </header>
@@ -79,8 +82,6 @@
   <footer class="site-footer">
     <div class="container footer-grid"><div><a href="index.html" class="brand"><span class="brand-mark">E</span><span>E-LIBRARY</span></a><p>Faculty of Science and Technology</p></div></div>
   </footer>
-
-  <div class="setup-note" data-config-message hidden></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-config.js"></script>
