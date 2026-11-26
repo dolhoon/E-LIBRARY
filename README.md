@@ -46,3 +46,8 @@ python -m http.server 8000
 Then visit:
 
 http://localhost:8000
+
+
+## Local sample data
+
+The static version includes a member profile with borrowing history for local presentation. New registrations and borrowing activity are stored in the current browser profile.
